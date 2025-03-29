@@ -4,9 +4,13 @@ import com.example.adi.recommendation.model.AggregateBidOfferDTO;
 import com.example.adi.recommendation.model.BidRecommendation;
 import com.example.adi.recommendation.model.InventoryRequest;
 import com.example.adi.recommendation.repository.BidOfferRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
+import java.util.logging.Logger;
+
+@Slf4j
 @Service
 public class RecommendationKafkaListenerServiceImpl implements RecommendationKafkaListenerService{
     private final BidOfferRepository repository;
@@ -20,6 +24,7 @@ public class RecommendationKafkaListenerServiceImpl implements RecommendationKaf
     @Override
     @KafkaListener(topics = "${kafka.topic.recommendation}", groupId = "recommendation-group")
     public void consumeMessage(InventoryRequest inventoryRequest) {
+        log.info("Consumed: {}", inventoryRequest);
         AggregateBidOfferDTO aggregateBidOfferDTO =
                 repository.findAggregateBidOfferDTOItemCode(inventoryRequest.getCode());
         BidRecommendation bidRecommendation = createBidRecommendation(inventoryRequest, aggregateBidOfferDTO);
