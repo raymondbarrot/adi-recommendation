@@ -1,9 +1,11 @@
-package com.example.adi.recommendation.service;
+package com.example.adi.recommendation.service.impl;
 
 import com.example.adi.recommendation.model.AggregateBidOfferDTO;
 import com.example.adi.recommendation.model.BidRecommendation;
 import com.example.adi.recommendation.model.InventoryRequest;
 import com.example.adi.recommendation.repository.BidOfferRepository;
+import com.example.adi.recommendation.service.RecommendationKafkaListenerService;
+import com.example.adi.recommendation.service.RecommendationKafkaProducerService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
@@ -12,7 +14,7 @@ import java.util.logging.Logger;
 
 @Slf4j
 @Service
-public class RecommendationKafkaListenerServiceImpl implements RecommendationKafkaListenerService{
+public class RecommendationKafkaListenerServiceImpl implements RecommendationKafkaListenerService {
     private final BidOfferRepository repository;
     private final RecommendationKafkaProducerService producerService;
 

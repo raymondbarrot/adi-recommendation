@@ -1,7 +1,8 @@
-package com.example.adi.recommendation.service;
+package com.example.adi.recommendation.service.impl;
 
 import com.example.adi.recommendation.config.ConstantsConfig;
 import com.example.adi.recommendation.model.BidRecommendation;
+import com.example.adi.recommendation.service.RecommendationKafkaProducerService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -9,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
-public class RecommendationKafkaProducerServiceImpl implements RecommendationKafkaProducerService{
+public class RecommendationKafkaProducerServiceImpl implements RecommendationKafkaProducerService {
     @Autowired
     private KafkaTemplate<String, BidRecommendation> kafkaTemplate;
     @Autowired
