@@ -13,7 +13,7 @@ import java.math.BigDecimal;
 public interface BidOfferRepository extends JpaRepository<BidOffer, String> {
 
     @Query("SELECT new com.example.adi.recommendation.model.AggregateBidOfferDTO(MAX(b.amount), " +
-            "MIN(b.amount),AVG(b.amount)) FROM BidOffer b WHERE b.itemCode =:itemCode")
+            "MIN(b.amount), AVG(b.amount)) FROM BidOffer b WHERE b.itemCode =:itemCode")
     public AggregateBidOfferDTO findAggregateBidOfferDTOItemCode(@Param("itemCode") String itemCode);
 
 }
