@@ -7,10 +7,13 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigDecimal;
+
 @Repository
 public interface BidOfferRepository extends JpaRepository<BidOffer, String> {
 
-    @Query("SELECT new com.example.adi.recommendation.model.AggregateBidOfferDTO(MAX(amount), " +
-            "MIN(amount),AVG(amount)) FROM bid_offer WHERE item_code =:itemCode")
+    @Query("SELECT new com.example.adi.recommendation.model.AggregateBidOfferDTO(MAX(b.amount), " +
+            "MIN(b.amount),AVG(b.amount)) FROM BidOffer b WHERE b.itemCode =:itemCode")
     public AggregateBidOfferDTO findAggregateBidOfferDTOItemCode(@Param("itemCode") String itemCode);
+
 }
